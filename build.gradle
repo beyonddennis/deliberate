@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.14'
+}
+
+group 'com.doc'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.pdfbox:pdfbox:2.0.29'
+    javafx {
+        modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
+    }
+}
+
+application {
+    mainClassName = 'com.doc.reader.MainApp'
+}
+
+java {
+    modularity.inferModulePath = true
+}
+
+dependencies {
+    implementation 'org.apache.pdfbox:pdfbox:2.0.29'
+    implementation "org.openjfx:javafx-controls:17.0.1"
+    implementation "org.openjfx:javafx-fxml:17.0.1"
+    implementation "org.openjfx:javafx-swing:17.0.1"
+}
+
+run {
+    jvmArgs += ['--module-path', classpath.asPath]
+}
